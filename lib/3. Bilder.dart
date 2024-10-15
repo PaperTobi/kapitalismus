@@ -16,9 +16,9 @@ class MyApp extends StatelessWidget {
             'Tobi',
             style: TextStyle(color: Colors.black26),
           ),
-          backgroundColor: const Color.fromRGBO(0, 41, 255, 1.0),
+          backgroundColor: Colors.black26, // Set AppBar background color to black26
         ),
-        backgroundColor: Colors.white, // Set the background color of the Scaffold
+        backgroundColor: Colors.black54, // Set the background color of the Scaffold to black54
         body: Column(
           children: [
             Container(
