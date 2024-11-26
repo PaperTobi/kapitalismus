@@ -1,80 +1,71 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: PassengerCounter(),
-    );
-  }
+void main() {
+  runApp(const Flugzeug());
 }
 
-class PassengerCounter extends StatefulWidget {
+class Flugzeug extends StatefulWidget {
+  const Flugzeug({Key? key}) : super(key: key);
+
   @override
-  _PassengerCounterState createState() => _PassengerCounterState();
+  _FlugzeugZahl createState() => _FlugzeugZahl();
 }
 
-class _PassengerCounterState extends State<PassengerCounter> {
-  int counter = 0;
+class _FlugzeugZahl extends State<Flugzeug> {
+  int zahl = 0;
 
-  void _incrementCounter() {
+  void hoch() {
     setState(() {
-      counter++;
+      zahl++;
     });
   }
 
-  void _decrementCounter() {
+  void runter() {
     setState(() {
-      if (counter > 0) {
-        counter--;
+      if (zahl > 0) {
+        zahl--;
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("TAICounter"),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              "Zählerstand",
-              style: TextStyle(fontSize: 24),
-            ),
-            Text(
-              "$counter",
-              style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 20),
-            const Icon(
-              Icons.airplanemode_active,
-              size: 200,
-              color: Colors.blueGrey,
-            ),
-          ],
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('PaperTobi.de'),
+        ),
+        body: Center(
+          child: Column(
+            children: <Widget>[
+              Text(
+                '$zahl',
+                style: const TextStyle(fontSize: 169),
+              ),
+              const SizedBox(height: 20),
+              const Icon(
+                Icons.airplanemode_active,
+                size: 96,
+                color: Colors.blue,
+              ),
+              const SizedBox(height: 20), // Added spacing
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  FloatingActionButton(
+                    onPressed: runter,
+                    child: const Icon(Icons.remove_circle_sharp),
+                  ),
+                  FloatingActionButton(
+                    onPressed: hoch,
+                    child: const Icon(Icons.add_box_sharp),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          FloatingActionButton(
-            onPressed: _decrementCounter,
-            child: const Icon(Icons.remove),
-          ),
-          FloatingActionButton(
-            onPressed: _incrementCounter,
-            child: const Icon(Icons.add),
-          ),
-        ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
